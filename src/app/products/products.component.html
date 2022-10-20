@@ -1,0 +1,17 @@
+
+    <ng-container *ngIf="products.length === 0">
+        <span>product is not available</span>
+    </ng-container>
+    <ng-container  *ngFor="let item of products" >
+        <div class="card">
+            <img src="{{item.thumbnail}}" alt="{{item.title}}" width="20%" height="20%" />
+            <div class="container">
+                <h4>{{item.title}}</h4>
+                <span>$ {{item.price}}</span>
+            </div>
+            <div>
+                <button (click)="addCart(item.id)" type="button" style="background-color:rgb(144, 216, 144); transition: 0.3s; border-radius: 5px;">Add to Cart</button>
+            </div>
+        </div>
+    </ng-container>
+

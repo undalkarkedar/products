@@ -1,0 +1,75 @@
+<h4>Cart Details</h4>
+<ng-container *ngIf="cartDetails.length === 0">
+  <span>product is not available</span>
+</ng-container>
+<ng-container *ngIf="cartDetails.length > 0">
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Name</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Total</th>
+  </tr>
+  <tr *ngFor="let item of cartDetails">
+    <td>
+      <img
+        src="{{ item.thumbnail }}"
+        alt="{{ item.title }}"
+        width="20%"
+        height="20%"
+      />
+    </td>
+    <td>{{ item.title }}</td>
+    <td>
+      <button
+        (click)="addToCartItem(item)"
+        type="button"
+        style="
+          background-color: rgb(144, 216, 144);
+          transition: 0.3s;
+          border-radius: 5px;
+        "
+      >
+        +
+      </button>
+      {{ item.quantity }}
+      <button
+        (click)="removeFromCartItem(item)"
+        type="button"
+        style="background-color: red; transition: 0.3s; border-radius: 5px"
+      >
+        -
+      </button>
+    </td>
+    <td>$ {{ item.price }}</td>
+    <td>$ {{priceItem(item)}}</td>
+    <td>
+      <button
+        (click)="removeCartItem(item)"
+        type="button"
+        style="background-color: red; transition: 0.3s; border-radius: 5px"
+      >
+        x
+      </button>
+    </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>$ {{getTotal(cartDetails)}}</td>
+  </tr>
+</table>
+<button
+  (click)="clearCart()"
+  [hidden]="cartDetails.length === 0"
+  type="button"
+  style="background-color: red; transition: 0.3s; border-radius: 5px"
+>
+  Clear All
+</button>
+</ng-container>
